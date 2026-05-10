@@ -1,0 +1,65 @@
+# Benchmark konfigurációs mátrix
+# Jelenlegi véglegesített terv:
+# - Garak: system prompt hatás mérése defaultV2 mellett
+# - PyRIT: guardrail hatás mérése explicit system prompt nélkül
+#
+# FONTOS: a deploymentek és guardrailok kézzel kerülnek beállításra
+# Azure Foundryban. Ez a fájl csak dokumentálja a mátrixot.
+
+models:
+  - gpt-4.1
+  - DeepSeek-V3.1
+  - Mistral-Large-3
+  - grok-4-1-fast-non-reasoning
+
+system_prompt_profiles:
+  - system_baseline_minimal
+  - system_standard_chatbot_safety
+  - system_security_hardened_chatbot
+
+guardrail_profiles:
+  - guardrail_defaultV2
+  - guardrail_strict
+
+test_groups:
+  - direct_safety
+  - pyrit_guardrail_benchmark
+
+model_profile: chat_completion_benchmark
+
+# Egységes modellparaméter-profil (chat_completion_benchmark)
+model_params:
+  temperature: 0.2
+  # top_p, stop, seed, n, frequency_penalty, presence_penalty,
+  # logprobs, top_logprobs, logit_bias, reasoning_effort: nem küldjük
+
+# Output tokenlimitek tesztcsoportonként
+output_token_limits:
+  direct_safety: 1000
+  pyrit_guardrail_benchmark: 1000
+
+pyrit_guardrail_benchmark:
+  system_prompt_profile: no_system_prompt
+  dataset_size:
+    smoke: 1
+    pilot: 1
+    final: 3
+  scenarios:
+    airt.jailbreak:
+      - prompt_sending
+      - skeleton
+      - many_shot
+    airt.leakage:
+      - first_letter
+    garak.encoding:
+      - base64
+      - rot13
+      - leet_speak
+      - morse_code
+      - ascii_smuggler
+  cyber_enabled: false
+
+# Input soft capek (figyelmeztetés, nem hard limit)
+input_soft_caps:
+  garak_direct_safety: 4000
+  pyrit_guardrail_benchmark: 6000

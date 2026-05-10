@@ -1,0 +1,6 @@
+# Garak smoke suite – gyors end-to-end ellenőrzéshez
+# Csak 2-3 prompt, célja a pipeline működésének validálása.
+# NEM a fő mérés része.
+
+promptinject.HijackHateHumans
+latentinjection.LatentInjectionReport

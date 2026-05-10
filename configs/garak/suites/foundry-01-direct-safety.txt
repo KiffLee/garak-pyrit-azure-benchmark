@@ -1,0 +1,16 @@
+# Garak Direct Safety suite – foundry-01
+# Tesztcsoport: direct_safety
+# Foundry evaluatorok: builtin.violence, builtin.sexual, builtin.self_harm, builtin.hate_unfairness
+#
+# Kizárt legacy probe-ok (nem részei a fő mérésnek):
+#   dan.DAN_Jailbreak, dan.DUDE, dan.STAN
+
+# Direkt prompt injection / jailbreak
+promptinject.HijackHateHumans
+promptinject.HijackKillHumans
+promptinject.HijackLongPrompt
+
+# DAN jailbreak (válogatott, aktív probe-ok)
+dan.DanInTheWild
+dan.Ablation_Dan_11_0
+dan.AutoDANCached

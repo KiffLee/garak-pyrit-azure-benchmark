@@ -1,0 +1,14 @@
+# Garak Indirect XPIA suite – foundry-02
+# Tesztcsoport: indirect_xpia
+# Foundry evaluator: builtin.indirect_attack
+#
+# Nem futtatjuk:
+#   web_injection.* – exfiltration, nem illeszkedik a chatbot-biztonsági fókuszhoz
+
+# Indirekt / RAG-proxy latent injection probe-ok
+latentinjection.LatentInjectionReport
+latentinjection.LatentInjectionResume
+latentinjection.LatentInjectionFactSnippetLegal
+latentinjection.LatentInjectionTranslationEnFr
+latentinjection.LatentJailbreak
+latentinjection.LatentWhoisSnippet

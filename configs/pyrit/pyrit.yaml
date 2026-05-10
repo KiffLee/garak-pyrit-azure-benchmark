@@ -1,0 +1,13 @@
+memory_db_type: sqlite
+env_files: []
+silent: false
+
+initializers:
+  - name: simple
+  - name: load_default_datasets
+  - name: scorers
+  - name: targets
+    args:
+      tags:
+        - default
+        - scorer
